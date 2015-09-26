@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     notifier = require('node-notifier'),
     server = require('gulp-server-livereload'),
     concat = require('gulp-concat'),
-    sass = require('gulp-sass'),
     watch = require('gulp-watch');
 
 var notify = function(error) {
@@ -72,15 +71,4 @@ gulp.task('serve', function(done) {
     }));
 });
 
-gulp.task('sass', function () {
-  gulp.src('./sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(concat('style.css'))
-    .pipe(gulp.dest('./'));
-});
-
-gulp.task('default', ['build', 'serve', 'sass', 'watch']);
-
-gulp.task('watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-});
+gulp.task('default', ['build', 'serve', 'watch']);
